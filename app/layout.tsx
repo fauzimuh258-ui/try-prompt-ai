@@ -2,7 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "Try Prompt AI — Generate Prompt AI Presisi Tinggi",
-  description: "AI prompt generator gratis. Oleh Vazi, founder 17 tahun.",
+  description: "AI prompt generator gratis. Oleh Vazi, founder 17 tahun dari Indonesia.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
