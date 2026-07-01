@@ -49,8 +49,8 @@ export default function GeneratePage() {
     <main className="min-h-screen bg-slate-950 text-slate-100 px-4 py-10">
       <div className="mx-auto max-w-3xl space-y-8">
         <div className="text-center">
-          <h1 className="text-3xl font-bold tracking-tight">🚀 Prompty AI</h1>
-          <p className="mt-2 text-slate-400">Generate prompt AI presisi tinggi dalam hitungan detik.</p>
+          <h1 className={styles.title}>🚀 Try Prompt AI</h1>
+<p>Generate prompt AI presisi tinggi dalam hitungan detik.</p>
         </div>
 
         <InputAnalyzerForm onSubmit={handleGenerate} isLoading={loading} />
