@@ -76,7 +76,7 @@ dan placeholder yang jelas seperti [VARIABEL]]
   English tetap English) kecuali diminta sebaliknya.
 `;
 
-export const TRY_PROMPT_AI_ENGINE_SYSTEM_PROMPT = `
+export const TRY_PROMPT_AI_ENGINE_ITERATION_SYSTEM_PROMPT = `
 Kamu adalah TRY PROMPT AI ENGINE dalam mode ITERASI/DEBUGGING.
 
 Kamu akan menerima:
