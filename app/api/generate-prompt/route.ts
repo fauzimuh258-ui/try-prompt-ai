@@ -56,7 +56,7 @@ export async function POST(req: Request) {
 
     const result = await streamText({  // ← TAMBAH await
       model,
-      system: PROMPTY_AI_SYSTEM_PROMPT,
+      system: TRY_PROMPT_AI_ENGINE_SYSTEM_PROMPT,
       messages: [
         {
           role: "user",
