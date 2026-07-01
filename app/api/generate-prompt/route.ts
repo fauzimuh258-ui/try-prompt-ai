@@ -18,7 +18,7 @@ function resolveModel() {
   const hasGroq = !!process.env.GROQ_API_KEY;
   const hasDeepSeek = !!process.env.DEEPSEEK_API_KEY;
 
-  if (hasGroq) return groq("llama-3.3-70b-versatile");
+  if (hasGroq) return groq("gpt-oss-120b");
   if (hasDeepSeek) return deepseek("deepseek-chat");
 
   throw new Error(
