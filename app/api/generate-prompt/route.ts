@@ -15,18 +15,13 @@ export const maxDuration = 60;
  * Utama: Groq (Llama 3.3). Fallback: DeepSeek.
  */
 function resolveModel() {
-  const hasDeepSeek = !!process.env.DEEPSEEK_API_KEY;
   const hasGroq = !!process.env.GROQ_API_KEY;
 
-  // Utama: DeepSeek (stabil, gratis)
-  if (hasDeepSeek) return deepseek("deepseek-chat");
+  if (hasGroq) {
+    return groq("llama-3.1-70b-versatile");
+  }
 
-  // Cadangan: Groq (kalau DeepSeek down)
-  if (hasGroq) return groq("qwen-3-32b");  // coba model lain
-
-  throw new Error(
-    "Tidak ada API key yang berfungsi."
-  );
+  throw new Error("Tidak ada provider yang berfungsi.");
 }
 
 
