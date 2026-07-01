@@ -46,13 +46,18 @@ ${FEW_SHOT_EXAMPLES}`;
     });
 
     const data = await res.json();
-    const content = data?.choices?.[0]?.message?.content || "Tidak ada respons.";
 
-    return Response.json({ content });
-  } catch (err) {
-    return Response.json(
-      { error: err instanceof Error ? err.message : "Terjadi kesalahan." },
-      { status: 500 }
-    );
-  }
-}
+// Debug: lihat struktur response dari Gateway
+console.log("Gateway response:", JSON.stringify(data).slice(0, 300));
+
+// Coba berbagai format response
+const content = 
+  data?.content ||                    // Format 1
+  data?.choices?.[0]?.message?.content || // Format 2 (OpenAI style)
+  data?.response ||                   // Format 3
+  data?.text ||                       // Format 4
+  data?.data?.content ||              // Format 5
+  data?.message ||                    // Format 6
+  JSON.stringify(data);               // Fallback: tampilkan semua
+
+return Response.json({ content });
