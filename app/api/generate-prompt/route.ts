@@ -32,35 +32,31 @@ Contoh standar kualitas:
 ${FEW_SHOT_EXAMPLES}`;
 
     const res = await fetch(GATEWAY_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": GATEWAY_KEY,
-      },
-      body: JSON.stringify({
-        messages: [{ role: "user", content: userMessage }],
-        model: "gpt-oss-120b",
-        max_tokens: 2048,
-        temperature: 0.7,
-      }),
-    });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": GATEWAY_KEY,
+  },
+  body: JSON.stringify({
+    messages: [{ role: "user", content: userMessage }],
+    model: "gpt-oss-120b",
+    max_tokens: 2048,
+    temperature: 0.7,
+    stream: false,  // ← TAMBAH INI
+  }),
+});
 
-    const data = await res.json();
+console.log("Status:", res.status);
+const data = await res.json();
+console.log("Full response:", JSON.stringify(data).slice(0, 500));
 
-    // Debug: lihat struktur response dari Gateway
-    console.log("Gateway response:", JSON.stringify(data).slice(0, 300));
+const content =
+  data?.content ||
+  data?.choices?.[0]?.message?.content ||
+  data?.error ||
+  JSON.stringify(data);
 
-    // Coba berbagai format response
-    const content =
-      data?.content ||
-      data?.choices?.[0]?.message?.content ||
-      data?.response ||
-      data?.text ||
-      data?.data?.content ||
-      data?.message ||
-      JSON.stringify(data);
-
-    return Response.json({ content });
+return Response.json({ content });
   } catch (err) {
     return Response.json(
       { error: err instanceof Error ? err.message : "Terjadi kesalahan." },
